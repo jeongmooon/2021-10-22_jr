@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>이벤트</h1>
+    <input type="text" class="text" />
+    <input type="button" value="button" class="button" />
+    <div class="contents"></div>
+    <br />
+    <select>
+      <option value="HTML">HTML</option>
+      <option value="CSS">CSS</option>
+      <option value="JS">JS</option>
+    </select>
+    <input type="text" class="text" />
+    <input type="button" value="button2" class="button" />
+  </body>
+  <script>
+    const inputText = document.querySelector(".text");
+    const inputButton = document.querySelector(".button");
+
+    // 이벤트 감지 함수
+    inputButton.addEventListener("click", function () {
+      let text = inputText.value;
+      contents.innerHTML = text;
+    });
+
+    const select = document.querySelector(".select");
+    const button2 = document.querySelector(".button2");
+    const contents2 = document.querySelector(".contents2");
+
+    button2.addEventListener("click", function () {
+      let selectOption = select.value;
+      contents2.innerHTML = selectOption;
+    });
+  </script>
+</html>
