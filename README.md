@@ -484,8 +484,8 @@ https://www.w3schools.com/js/js_objects.asp
 - 데이터들을 어떤 실제 대상에 가깝데 다루고자 할 때
 - 객체데이터는 property, method
 - 각각의 객체데이터는 name:value로 구성됨(key:value)
-- 객체 메소드에 사용되는 this는 해당객체를 의미함
-- 객체 메소드에서 객체 프로퍼티를 사용하는 this를 사용해서 객체를 명시해야 함
+- 객체 메소드에 사용되는 this는 해당 객체를 의미함
+- 객체 메소드에서 객체 프로퍼티를 사용할때는 this를 사용해서 객체를 명시해야 함
 
 ```
 객체 선언
@@ -522,7 +522,7 @@ https://www.w3schools.com/js/js_classes.asp
 > - 객체 데이터를 생성하기 위한 설계도
 > - 클래스를 사용해서 만든 객체 데이터 : Instance(인스턴스)
 > - 클래스 이름은 대문자로 시작
-> - this : 해당 객체 클래스를 의미함
+> - this : 해당 클래스 객체를 의미함
 
 ```
 클래스 선언
@@ -533,7 +533,7 @@ class Car{
     this.year = year; // this.year : 객체 property 이름 year
   }
   printYear(){
-     fuction this.year;
+    return this.year;
   }
 }
 
@@ -541,9 +541,10 @@ let car1 = new Car('hyundai', 2021);
 let car2 = new Car('Kia', 2022);
 
 car1.name
-car1.year()
+car1.printYear()
 
 car2.year
+car2.printYear()
 ```
 
 ### JS scope
@@ -552,14 +553,14 @@ https://www.w3schools.com/js/js_scope.asp
 
 > 변수 적용(접근) 범위
 >
-> - Block Space : 블럭 범위 - 명령문/구문의 코드 블럭 영역
+> - Block Scope : 블럭 범위 - 명령문/구문의 코드 블럭 영역
 > - Function Scope : 함수 범위 - 함수 선언 영역
 > - Global Scope : 전역 범위 - 프로그래밍 전체 영역
 
 > 변수 Scope 적용 원리
 >
 > - 전역 영역, 함수 영역, 블럭 영역이 포함 관계로 되어 있을 때 적용 가능
-> - 포함하고 있는 큰영역에서 선언된 변수는 포함되는 작은 영역에서는 사용 가능
+> - 포함하고 있는 큰 영역에서 선언된 변수는 포함되는 작은 영역에서는 사용 가능
 > - 포함되는 작은 영역에서 선언된 변수는 포함하는 큰 영역에서는 사용 불가능
 > - 포함 관계로 되어 있지 않은 서로 다른 영역에서는 접근 불가능
 
@@ -568,8 +569,8 @@ https://www.w3schools.com/js/js_scope.asp
 https://www.w3schools.com/js/js_arrow_function.asp
 
 ```
-let hello = fuction(){
-  return 'hello World';
+let hello = function(){
+  return 'Hello World';
 }
 
 let hello = () => {
@@ -577,17 +578,19 @@ let hello = () => {
 }
 ```
 
-> function으로 정의되는 일반함수와 화살표가 함수는 this의 의미가 다름
+> function으로 정의되는 일반함수와 화살표 함수는 this의 의미가 다름
 >
 > - 일반 함수는 최종적으로 함수를 호출한 대상의 객체 : this
 > - 화살표 함수는 함수가 포함된 최상위 객체 : this
 
 ### JSON
 
+https://www.w3schools.com/js/js_json.asp
+
 ### 내장객체
 
 - javascript 언어 속에 미리 정의되어 있는 객체
-- String, Aray, Date, Math...
+- String, Array, Date, Math ...
 - 내장객체의 property와 method를 사용해서 기능실행
 
 ## Javascript 활용
@@ -595,7 +598,7 @@ let hello = () => {
 ### Event(이벤트)
 
 - 사용자의 행동에 의해서 발생되는 변화의 신호
-- 마우스, 키보드 관련 이벤트
+- 마우스, 키보드, 터치 관련 이벤트
 - 이벤트 동작 흐름
 
   - 변화 발생
@@ -613,20 +616,20 @@ let hello = () => {
 
 > 이벤트 감지 함수
 >
-> -addEventListener()
+> - addEventListener()
 
 ```
 사용방식
 
-객체, addEventListener(이벤트종류, 함수);
+객체(DOM).addEventListener(이벤트종류, 함수);
 ```
 
-> 함수
+> 실행 함수
 >
 > - 함수 호출
 > - 익명 함수
 
-### HTML Dom(Document Object Model)
+### HTML DOM(Document Object Model)
 
 - Document(HTML 문서 : body)
 - HTML Element를 객체화 시킨것
@@ -636,7 +639,7 @@ let hello = () => {
 > HTML Element 내용
 >
 > - HTML Element를 추가, 출력, 수정, 삭제
-> - (C)reate (R)ed (U)pdate (D)elete
+> - (C)reate (R)ead (U)pdate (D)elete
 >
 > HTML Element 효과
 >
@@ -644,7 +647,7 @@ let hello = () => {
 
 > DOM(Document Object Model) 객체
 >
-> = document : HTML Element 중에서 가장 최상위 객체
+> - document : HTML Element 중에서 가장 최상위 객체
 
 > BOM(Browser Object Model) 객체
 >
@@ -654,23 +657,55 @@ let hello = () => {
 
 > HTML4 API
 >
-> - id 이름으로 DOM Access : document.getElementById();
-> - class 이름으로 DOM Access : document.getElementsByClassName();
-> - Tag 이름으로 DOM Access : document.getElementsByTagName();
+> - id 이름으로 DOM Access : document.getElementById()
+> - class 이름으로 DOM Access : document.getElementsByClassName()
+> - Tag 이름으로 DOM Access : document.getElementsByTagName()
 
 > HTML5 API
 >
 > - 1개 DOM Access : document.querySelector('CSS 선택자 형식')
 > - 여러개 DOM Access : document.querySelectorAll('CSS 선택자 형식')
 
-### DOM Contents
+### DOM Contents - CRUD
 
 > Create(생성)
 >
 > - DOM 생성 : Javascript에서 HTML Element 동적(Dynamic) 생성
+>   - HTML 직접 코딩 => 정적 코딩
+> -
 >
 > Read
 >
 > Update
 >
-> Deltete
+> Delete
+
+### Form 요소
+
+https://www.w3schools.com/html/html_forms.asp
+
+- 클라이언트에서 작성한 내용을 서버에 전달할 때 사용하는 Element
+
+> input
+>
+> - type="text"
+> - type="button" / type="submit" / type="reset"
+
+> button
+>
+> - input type button과 사용 형식이 거의 같음
+> - type="button" / type="submit" / type="reset"
+
+```
+<input type="button" value="버튼" />
+
+<button type="button">버튼</button>
+
+** 기능의 차이는 없음
+** 활용도가 높은 button 태그를 사용하는 것을 권장
+```
+
+> select
+>
+> - 숨겨진 목록에서 아이템 선택
+
